@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+<div th:replace="base :: navlinks"></div>
+<h1>Messages List</h1>
+<!--this a tag add a link to allow user to add a message-->
+<a href="/add">Add a Message</a>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Date Posted</th>
+        <th>Posted By</th>
+        <td>Actions</td>
+    </tr>
+    <tr th:each="message : ${messages}">
+        <td th:text="${message.title}"></td>
+        <td th:text="${message.content}"></td>
+        <td th:text="${message.postedDate}"></td>
+        <td th:text="${message.postedBy}"></td>
+        <td>
+            <a th:href="@{/update/{id}(id=${message.id})}">Update</a>
+            <a th:href="@{/detail/{id}(id=${message.id})}">Detail</a>
+            <a th:href="@{/delete/{id}(id=${message.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+
+
+</body>
+</html>
